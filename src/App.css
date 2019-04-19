@@ -1,33 +1,90 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
+  background-color: red;
+  width: 46.8in;
+  /* height: 33.1in; */
+  height: 40in;
+  font-size: 32pt;
+  /*font-family: 'Average';*/
+  text-align: justify;
+  text-justify: inter-word;
+  overflow: hidden;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.container {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr) ;
+  grid-template-rows: 12em 1fr 1fr 17em;
+  /* justify-items: stretch;
+  align-items: stretch; */
+  justify-content: space-around;
+  align-content: stretch;
+  /* grid-column-gap: 1em;
+  grid-row-gap: 1em; */
+  grid-template-areas:
+    "header header header header header header header"
+    "intro intro bias bias bias biaswhy biaswhy"
+    "gener gener gener gener algo algo algo"
+    "methods methods methods methods methods methods methods";
+  padding: 0em 0em 0em 1em ;
+  /* grid-auto-flow: column; */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header {
+justify-self: center;
+}
+
+.panel {
+  /* grid-column: 1 / 1;
+  grid-row: 2 / 2; */
+  border-radius: 6px;
+  border: black solid 2px;
+  padding: 1em 1em;
+  margin: 0em 1em 1em 0em;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.panel > p {
+  margin: 0.1em 1em;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.panel-heading > h3 {
+ margin: 0.3em;
+}
+
+.panel> .panel-heading {
+/* overflow: auto; */
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #337ab7;
+}
+
+.panel-title {
+font-size: 38pt;
+text-align: center;
+}
+
+
+
+.speech-bubble {
+	position: relative;
+	background: #00aabb;
+	border-radius: .4em;
+}
+
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 24px solid transparent;
+	border-right-color: #00aabb;
+	border-left: 0;
+	border-top: 0;
+	margin-top: -12px;
+	margin-left: -24px;
 }

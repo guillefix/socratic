@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title></title>
+<link href="bootstrap/css/bootstrap_noprint_localedit.css" rel="stylesheet">
+<link href="poster.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
+<script type="text/javascript" async src="MathJax/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+</head>
+<body>
+<div class="poster">
+<h1 class="poster-title">Deep Neural Network Probabilistic Decoder for Stabilizer Codes</h1>
+<h2 class="poster-authors">Stefan Krastanov, Liang Jiang</h2>
+<h3 class="poster-affiliations">Departments of Applied Physics and Physics, Yale Quantum Institute, Yale University, New Haven, Connecticut 06520, USA</h3>
+<hr class="fancy-line"/>
+<div class="container">
+<div class="row">
+  <div class="col-xs-3 vjustify">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Introduction</h3>
+      </div>
+      <div class="panel-body">
+        <img class="img-thumbnail float-left" src="codes.png"/>
+        <p>To redundantly encode information one can use a system of linear
+        constrains (i.e. constraining the parity) on the physical qubits, as
+        done in stabilizer codes (or their classical counterpart - linear
+        codes). These constraints are represented as a matrix
+        equation, or equivalently as the corresponding graph connecting each
+        "check" $c_i$ (constraint) to its "variables" $v_i$ (qubits whose
+        parity is constrained).</p>
+        <p><strong>A substantial challenge presents itself when one attempts to
+        decode a code</strong> after an error has occurred. In general, this is
+        an infeasible NP-complete problem, but in many cases the particular
+        code would have some additional structure that permits the creation of
+        a smart efficient decoding algorithm.</p>
+        <p><strong>We present a method of creating a decoder for any stabilizer
+        code, by training a neural network to invert the syndrome-to-error
+        map for a given error model[1].</strong> We evaluate the performance of
+        our decoder when applied to the Toric Code.</p>
+      </div>
+    </div>
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Example: The Toric Code and its MWPM Decoder</h3>
+      </div>
+      <div class="panel-body">
+        <img class="img-thumbnail float-right" style="width:75%" src="toric_code.svg"/>
+        <p>We will use the Toric code as a benchmark for our otherwise general
+        protocol. In it the physical qubits are laid out in a lattice, and the
+        parity checks act on cells of the lattice.  After interpreting
+        non-trivial syndromes as pairs of particles, decoding becomes a problem
+        of matching and annihilating those pairs, for instance by minimizing
+        the total path they have to travel as done by Minimal Weight Perfect
+        Matching (MWPM).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-3 vjustify">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Neural Networks 101</h3>
+      </div>
+      <div class="panel-body">
+        <p><strong>Neural Networks are exceedingly good at fitting
+        high-dimensional nonlinear functions to given training data</strong>
+        The function to be "learned" is expressed as a network of "neurons"
+        parametrized by the strengths of the connections between neurons.</p>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <img class="img-thumbnail" src="neuron_real.png">
+        <img class="img-thumbnail" src="neuron_model.jpeg">
+      </div>
+      <div class="panel-footer">
+        <p><strong>A real neuron and a model of a neuron used in artificial neural
+        networks.</strong> The incomming signals are summed, passed
+        through a nonlinearity and the output "activation" is sent to the next
+        layer. The bias $b$ and numerous
+        connection weights $w_i$ are the optimization parameters during
+        fitting/training.</p>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <img class="img-thumbnail" src="neural_net.jpeg">
+      </div>
+      <div class="panel-footer">
+        <p><strong>Neural Networks are created from multiple layers of connected
+        neurons.</strong> The first layer is the input. The "activation values" are propagated
+        through the network and the last layer is the output. The strength of
+        the connections between neurons is what is trained/optimized.
+        <small>Image credit: [2].</small></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-6 vjustify">
+  <div class="row">
+    <div class="col-xs-12 vjustify">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">The Neural Network Quantum Error Correcting Code Decoder</h3>
+        </div>
+        <div class="panel-body">
+          <img class="img-thumbnail float-right" src="neural_decoder.svg"/>
+          <p>Decoding is deducing from a syndrome measurement $s$ the
+          most probable error $e$ that caused it. For a given code and error model, we generate a large sample of
+          errors and compute the corresponding syndromes. We use that data
+          to train a neural network to do the mapping from $s$ to $e$.</p>
+          <p>An important caveat is the need to interpret the output of the
+          neural network as a probability distribution - it is not a discrete
+          yes/no answer, rather a probability that an error occurred given the
+          syndrome.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6 vjustify">
+      <div class="panel panel-primary">
+        <div class="panel-body">
+          <img class="img-thumbnail" src="threshold.png">
+        </div>
+        <div class="panel-footer">
+          <p><strong>Our decoder significantly outperforms MWPM without having
+          hard-coded knowledge of its lattice structure.</strong>
+          The threshold is much better, and the properly corrected fraction of
+          codewords is higher.</p>
+        </div>
+      </div>
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">Note: Efficient Sampling from the Neural Network</h3>
+        </div>
+        <div class="panel-body">
+          <img class="img-thumbnail float-left" style="width:30%;" src="sampling.svg"/>
+          <p>For a given syndrome $s$, the network's output $E$ is evaluated
+          and interpreted as a list of error probabilities from which an array
+          $e$ (whether an error occurred) is sampled. If the
+          guess $e$ does not produce the syndrome $s$ we resample, but
+          <strong>only the qubits taking part in the stabilizer measurement
+          corresponding to the incorrect elements of the syndrome</strong>.</p>
+          <div style="clear:both;"></div>
+          <img class="img-thumbnail float-right" src="giveup.png">
+          <p>After a set number of iterations, we give up. For codes of more
+          than 200 qubits, this protocol can become impractical.</p>
+        </div>
+      </div>
+    </div>
+  
+    <div class="col-xs-6 vjustify">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">Benchmark: Comparing to Other Decoders</h3>
+        </div>
+        <div class="panel-body">
+          <p>Our neural decoder's threshold (16.4%) compares favorably to
+          renormalization group decoders[3] (15.2%) and
+          outperforms MWPM. Only a renormalization sparse code
+          decoder[3] reaches a similar threshold. These decoders have
+          been hand-crafted for the Toric Code, while our design can be applied
+          to other codes. There are a number of other attempts to employ
+          neural networks as decoders, notably[4], but they do not outperform
+          MWPM.</p>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Conclusions and Outlook</h3>
+        </div>
+        <div class="panel-body">
+          <p>Our architecture provides a practical high-fidelity
+          decoder for Toric codes of less than 200 qubits, outperforming most
+          alternatives. Exciting developments in the near future would
+          be the use of more advanced sampling algorithms employing recurrent neural
+          nets, and, on the other hand, applying this architecture to promising LDPC
+          codes that do not yet have any known decoders.</p>
+        </div>
+      </div>
+      <div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">References</h3>
+        </div>
+        <div class="panel-body">
+          <p style="font-size:25pt">
+          <small>Our neural net architecture [1]: <em>Krastanov, Jiang, "Deep
+                  Neural Network Probabilistic Decoder for Stabilizer Codes",
+                  Scientific Reports, 2017, (arXiv:1705.09334)</em></small>
+          <br/><small>[2]: <em>Karpathy, "CS231n: Convolutional Neural Networks for Visual Recognition", 2015</em></small>
+          <br/><small>[3]: <em>Duclos-Cianci, Poulin, "Fast decoders for topological quantum codes", PRL, 2010</em></small>
+          <br/><small>[4]: <em>Torlai, Melko, "Neural Decoder for Topological Codes", PRL, 2017</em></small></p>
+        </div>
+      </div>
+      <div style="text-align:center;">
+        <div class="logos">
+          <img src="original_logos/ARO_logo.png"/>
+          <img src="original_logos/ARL_logo.png"/>
+          <img src="original_logos/AFOSR_logo.jpg"/>
+          <img src="original_logos/Packard_logo.jpg"/>
+          <img src="original_logos/Sloan_logo.png"/>
+          <img src="original_logos/NSF_logo.png"/>
+        </div>
+      <img src="YQI_logo.png"/>
+      </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+</div>
+</body>
+</html>

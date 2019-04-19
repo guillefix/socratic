@@ -1,0 +1,133 @@
+/*@import url('https://fonts.googleapis.com/css?family=Average');
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One');*/
+body {
+width: 48in;
+height: 36in;
+}
+.poster {
+height: 100%;
+font-size: 32pt;
+/*font-family: 'Average';*/
+text-align: justify;
+text-justify: inter-word;
+overflow: hidden;
+display: flex;
+flex-direction: column;
+}
+h1, h2, h3, h4, h5 {
+/*font-family: 'Fjalla One';*/
+}
+.poster-title {
+text-align: center;
+font-size: 90pt;
+}
+.poster-authors {
+text-align: center;
+font-size: 60pt;
+}
+.poster-affiliations {
+text-align: center;
+font-size: 40pt;
+}
+.poster > .container {
+width:100%;
+flex-grow: 1;
+}
+.poster > .container > .row {
+height:100%
+}
+
+/* You would probably want all your columns to be vjustify.
+ */
+.vjustify {
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+height:100%;
+}
+.vjustify > .vgrow {
+flex-grow: 1;
+}
+
+/* Comment the following block out if you do not want to stretch out the
+ * columns. (.vgrow becomes redundant if you are using this)
+ */
+.vjustify > * {
+flex-grow: 1;
+}
+
+.panel{
+border-radius: 7pt;
+border-width: 6pt;
+display: flex;
+flex-direction: column;
+}
+.panel-footer {
+flex-grow: 1;
+}
+.panel-title {
+font-size: 38pt;
+text-align: center;
+}
+
+.panel-primary > .panel-footer {
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #337ab7;
+}
+
+img {
+object-fit: contain;
+width: 100%;
+}
+
+img.float-left {
+width: 50%;
+float: left;
+margin: 5pt;
+}
+
+img.float-right {
+width: 50%;
+float: right;
+margin: 5pt;
+}
+
+.logos {
+width: 100%;
+display: flex;
+flex-direction: row;
+align-content: center;
+}
+.logos > img {
+object-fit: contain;
+flex-grow:1;
+width: 100%;
+}
+
+hr.fancy-line {
+border: 0;
+height: 1pt;
+position: relative;
+margin: 0.5em 0; /* Keep other elements away from pseudo elements*/
+}
+hr.fancy-line:before {
+top: -0.5em;
+height: 1em;
+}
+hr.fancy-line:after {
+content:'';
+height: 0.5em;   /* half the height of :before */
+top: 1pt;        /* height of hr*/
+}
+hr.fancy-line:before, hr.fancy-line:after {
+content: '';
+position: absolute;
+width: 100%;
+}
+hr.fancy-line, hr.fancy-line:before {
+background: radial-gradient(ellipse at center, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 75%);
+}
+body, hr.fancy-line:after {
+background: #FFFFFF;
+}
