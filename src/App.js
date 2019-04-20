@@ -26,11 +26,11 @@ class App extends Component {
 <div className="App">
 <div dangerouslySetInnerHTML={{__html:"<script type='text/javascript' async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js'></script><script type='text/x-mathjax-config'>MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});</script>"}}></div>
 <div className="container">
-  <div className="header" style={{"gridArea":"header"}}>
+  <div className="header" style={{"gridArea":"header", "textAlign":"center"}}>
     <h1 className="poster-title">Deep learning generalizes because the parameter-function map is biased towards simple functions</h1>
     <h2 className="poster-authors">Guillermo Valle-Pérez, Chico Q. Camargo, Ard A. Louis</h2>
     <h3 className="poster-affiliations">Departments of Physics, University of Oxford, UK</h3>
-    <hr className="fancy-line"/>
+    // <hr className="fancy-line"/>
   </div>
   <div className="panel" style={{"gridArea": "intro"}}>
     <div className="panel-heading">
@@ -144,13 +144,11 @@ class App extends Component {
     <div className="panel-heading">
       <h3 className="bubble-title">What's the effect of the optimization algorithm?</h3>
     </div>
-    <p>
-      After all, different optimization algorithms do show differences in generalization in practice
-    </p>
+    <p><small>After all, different optimization algorithms do show differences in generalization in practice</small></p>
     </div>
     <div className="speech-bubble1" style={{"width":"auto"}}>
-    <p>Yes, but differences in generalization are typically of only a few percent.</p>
-    <p>However, you raise an important point. The bias is <i>enough </i> to explain the bulk of the generalization. However, whether it is the actual origin of the generalization in DNNs depends on the behaviour of the optimization algorithm.</p>
+    <p><small>Yes, but differences in generalization between different algorithms are typically of only a few percent.</small></p>
+    <p>However, although we have shown that the bias is <i>enough </i> to explain the bulk of the generalization, whether it is the actual origin of the generalization in DNNs depends on the behaviour of the optimization algorithm.</p>
     </div>
     <div className="speech-bubble1" style={{"width":"auto"}}>
     <p> A sufficient (though not necessary) condition for the parameter-function map to be main origin of the generalization is that the optimization algorithm isn't too biased, namely <i><b>Assumption 1</b></i> is approximately valid.</p>
@@ -163,6 +161,35 @@ class App extends Component {
     <div className="speech-bubble2" style={{"width":"auto"}}>Future work?</div>
     <div className="speech-bubble1" style={{"width":"auto"}}>There are problems regarding the validity of Assumption 1, the EP or other approximations to $P(U)$, as well as the tightness of PAC-Bayes itself.</div>
     <div className="speech-bubble1" style={{"width":"auto"}}>Furthermore, one can dig dipper to try to better understand the origin of the bias, and characterize it. In particular, there is the very important question of <b>why is the bias helpful for <i>real-world</i> tasks?</b></div>
+    <div className="speech-bubble2" style={{"width":"auto", "fontSize":"18pt"}}>
+      <p>
+      Starring:
+      </p>
+      <p>
+      Zhang et al. Understanding deep learning requires rethinking generalization. In Proceedings of the International Conference on Learning Representations (ICLR), 2017a
+      </p>
+      <p>
+      ...
+      </p>
+      <p>
+      Wu et al.
+      </p>
+      <p>
+      J Lee et al.
+      </p>
+      <p>
+      A Garriga-Alonso et al.
+      </p>
+      <p>
+      R Novak et al.
+      </p>
+      <p>
+      AGG Mathews et al.
+      </p>
+      <p>
+      Dingle et al.
+      </p>
+    </div>
   </div>
 </div>
 

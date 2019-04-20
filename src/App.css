@@ -17,7 +17,7 @@
   display: grid;
   /* grid-template-columns: repeat(7, 1fr) ; */
   grid-template-columns: repeat(3,32%);
-  grid-template-rows: 12em 1fr 1fr;
+  grid-template-rows: 9em 1fr 1fr;
   /* justify-items: stretch;
   align-items: stretch; */
   justify-content: stretch;
