@@ -14,7 +14,8 @@
 .container {
   height: 100%;
   display: grid;
-  grid-template-columns: repeat(7, 1fr) ;
+  /* grid-template-columns: repeat(7, 1fr) ; */
+  grid-template-columns: repeat(6, 1fr) ;
   grid-template-rows: 12em 1fr 17em 1fr 17em;
   /* justify-items: stretch;
   align-items: stretch; */
@@ -23,11 +24,17 @@
   /* grid-column-gap: 1em;
   grid-row-gap: 1em; */
   grid-template-areas:
+    "header header header header header header"
+    "intro intro bias bias biaswhy biaswhy"
+    "pfdef pfdef bias bias biaswhy biaswhy"
+    "gener gener gener algo algo algo"
+    "methods methods methods methods methods methods";
+  /* grid-template-areas:
     "header header header header header header header"
     "intro intro bias bias bias biaswhy biaswhy"
     "pfdef pfdef bias bias bias biaswhy biaswhy"
     "gener gener gener gener algo algo algo"
-    "methods methods methods methods methods methods methods";
+    "methods methods methods methods methods methods methods"; */
   padding: 0em 0em 0em 1em ;
   /* grid-auto-flow: column; */
 }
@@ -39,10 +46,12 @@ justify-self: center;
   /* grid-column: 1 / 1;
   grid-row: 2 / 2; */
   border-radius: 0.5em;
-  border: rgba(0, 0, 0, 0.3) solid 2px;
+  /* border: rgba(0, 0, 0, 0.3) solid 2px; */
   background: white;
-  padding: 0.5em 0.5em;
-  margin: 0em 1em 1em 0em;
+  /* padding: 0.5em 0.5em; */
+  padding: 0.0em 1em;
+  /* margin: 0em 1em 1em 0em; */
+  margin: 0em 0em 0em 0em;
   /* display: flex;
   flex-direction: column; */
 }
@@ -59,6 +68,15 @@ text-align: center;
 .speech-bubble1, .speech-bubble2 {
   /* font-size: 38pt; */
   margin: 0.5em;
+  /* display: inline-block; */
+  /* overflow: hidden; */
+  /* float: left; */
+  width: auto;
+}
+
+img {
+  /* float:none !important; */
+  /* display: inline; */
 }
 
 .user {
@@ -125,6 +143,11 @@ text-align: center;
   /* color: #fff;
   background-color: #337ab7;
   border-color: #337ab7; */
+}
+
+.bubble-title {
+font-size: 38pt;
+text-align: left;
 }
 
 .panel-title {

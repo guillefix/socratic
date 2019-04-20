@@ -40,35 +40,45 @@ class App extends Component {
       <div className="speech-bubble1">Ok, but why does it have an inductive bias?</div>
       <span className="user">VC theory  </span><div className="speech-bubble2">Limited expressivity maybe?</div>
       <br/>
-      <span className="user">Zhang et al.  </span><div className="speech-bubble2" style={{"width":"14em"}}>No, NNs can fit randomly labelled data</div>
+      <span className="user">Zhang et al.  </span><div className="speech-bubble2" style={{"width":"auto"}}>No, NNs can fit randomly labelled data</div>
       <br/>
-      <span className="user">[citation]  </span><div className="speech-bubble2" style={{"width":"15em"}}>Maybe SGD is what's biasing towards certain solutions</div>
+      <span className="user">[citation]  </span><div className="speech-bubble2" style={{"width":"auto"}}>Maybe SGD is what's biasing towards certain solutions</div>
       <div className="speech-bubble1">But many very different optimization algorithms generalize well</div>
       <span className="user">Wu et al.  </span><div className="speech-bubble2">Yeah!</div>
       <div className="speech-bubble1">Hmm, maybe it's an intrinsic property of the NN, like it's parameter-function map?</div>
       <span className="user">  </span><div className="speech-bubble2">What's that?</div>
   </div>
   <div className="panel" style={{"gridArea": "pfdef"}}>
-    <div className="panel-heading">
-      <h3 className="panel-title">The parameter-function map</h3>
-    </div>
-    <p>{"Let the space of functions that the model can express be $\\mathcal{F}$. If the model has $p$ real valued parameters, taking values within a set $\\Theta \\subseteq \\mathbb{R}^p$, the parameter-function map, $\\mathcal{M}$, is defined as:"}</p>
+  <div className="speech-bubble1">
+  {/*<div className="panel-heading">
+  <h3 className="panel-title">The parameter-function map</h3>
+  </div>*/}
+    <p>{"Let the space of functions that the model can express be $\\mathcal{F}$. If the model has $p$ real valued parameters, taking values within a set $\\Theta \\subseteq \\mathbb{R}^p$, "}</p>
+    <p><big><b>the parameter-function map</b></big>, {"$\\mathcal{M}$, is defined as:"}</p>
 <p>{"$$\\begin{align} \\mathcal{M} : \\Theta &\\to \\mathcal{F}\\\\ \\theta &\\mapsto f_\\mathbf{\\theta} \\end{align}$$"}</p>
 <p>{"where $f_\\mathbf{\\theta}$ is the function implemented by the model with choice of parameter vector $\\mathbf{\\theta}$."}</p>
   </div>
+  </div>
   <div className="panel" style={{"gridArea": "bias"}}>
+  <div className="speech-bubble1">
     <div className="panel-heading">
-      <h3 className="panel-title">The parameter-function map is biased towards simple function</h3>
+      <h3 className="bubble-title">Result 1: The parameter-function map is hugely biased</h3>
     </div>
     <p>For all the neural network architectures we tried:</p>
     <blockquote>
     The volumes of regions of parameter space producing particular funcions span a huge range of orders of magnitude.
     </blockquote>
-    <img src="rank_plot_extended.png" style={{"float":"right","width":"25em"}} alt="logP vs LZ"/>
+    </div>
+    <div className="speech-bubble2" style={{"width":"14em"}}>How did you find that out?</div>
+    <br/>
+    <div className="speech-bubble1" style={{"width": "auto"}}>
     <p>For a family of fully connected feedforward neural networks with $7$ Boolean inputs and one Boolean output of varying depths and widths, we sampled parameters with several distributions. In Figure, we show the empirical frequencies by which different functions are obtained</p>
-    <br/>
+    </div>
+    <div className="speech-bubble1" style={{"width": "auto"}}>
     <p>For some larger neural networks with higher-dimensional input spaces, we used a Gaussian process approximation to calculate the probability of different functions. This can be seen in Figures</p>
+    </div>
     <br/>
+    <img src="rank_plot_extended.png" style={{"float":"right","width":"25em"}} alt="logP vs LZ"/>
     <p>We found that in all cases, the probability of a function inversely correlated with its complexity (using a variety of measures of complexity)</p>
     <br/>
     <br/>
@@ -95,7 +105,7 @@ class App extends Component {
     <p>
     <ul>
       <li>We use the PAC-Bayesian framework to translate probabilistic biases into generalization guarantees</li>
-      <li>We make the assumption that the algorithm optimizing the parameters is unbiased, to isolate the effect of the parameter-function map. More precisely, we assume that the optimization algorithm samples the zero-error region close to uniformly (<emph><b>Assumption 1</b></emph>).</li>
+      <li>We make the assumption that the algorithm optimizing the parameters is unbiased, to isolate the effect of the parameter-function map. More precisely, we assume that the optimization algorithm samples the zero-error region close to uniformly (<i><b>Assumption 1</b></i>).</li>
     </ul>
     </p>
     <p><b>The result: </b></p>
