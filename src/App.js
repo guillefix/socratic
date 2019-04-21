@@ -42,7 +42,7 @@ class App extends Component {
       <br/>
       <span className="user">Zhang et al.  </span><div className="speech-bubble2" style={{"width":"auto"}}>No, NNs can fit randomly labelled data</div>
       <br/>
-      <span className="user">[citation]  </span><div className="speech-bubble2" style={{"width":"auto"}}>Maybe SGD is what's biasing towards certain solutions</div>
+      <span className="user">D Soudry et al., Zhang et al. (2017), Zhang et al. (2018)  </span><div className="speech-bubble2" style={{"width":"auto"}}>Maybe SGD is what's biasing towards certain solutions</div>
       <div className="speech-bubble1">But many very different optimization algorithms generalize well</div>
       <span className="user">Wu et al.  </span><div className="speech-bubble2">Yeah!</div>
       <div className="speech-bubble1">Hmm, maybe it's an intrinsic property of the NN, like it's parameter-function map?</div>
@@ -64,7 +64,9 @@ class App extends Component {
     The volumes of regions of parameter space producing particular funcions span a huge range of orders of magnitude.
     </blockquote>
     </div>
-    <img src="rank_plot_extended.png" style={{"display": "block","width":"25em"}} alt="logP vs LZ"/>
+    <div className="clearfix" style={{"display": "block"}}>
+    <img src="rank_plot_extended.png" style={{"float":"right","width":"25em"}} alt="logP vs LZ"/>
+    </div>
     <div className="speech-bubble2" style={{"width":"auto"}}>Oh, and how did you find that out?</div>
     <div className="speech-bubble1" style={{"width": "auto"}}>
     <p>For a family of fully connected feedforward neural networks with $7$ Boolean inputs and one Boolean output of varying depths and widths, we sampled parameters with several distributions. In Figure, we show the empirical frequencies by which different functions are obtained</p>
@@ -144,10 +146,8 @@ class App extends Component {
     <div className="panel-heading">
       <h3 className="bubble-title">What's the effect of the optimization algorithm?</h3>
     </div>
-    <p><small>After all, different optimization algorithms do show differences in generalization in practice</small></p>
     </div>
     <div className="speech-bubble1" style={{"width":"auto"}}>
-    <p><small>Yes, but differences in generalization between different algorithms are typically of only a few percent.</small></p>
     <p>However, although we have shown that the bias is <i>enough </i> to explain the bulk of the generalization, whether it is the actual origin of the generalization in DNNs depends on the behaviour of the optimization algorithm.</p>
     </div>
     <div className="speech-bubble1" style={{"width":"auto"}}>
@@ -161,34 +161,36 @@ class App extends Component {
     <div className="speech-bubble2" style={{"width":"auto"}}>Future work?</div>
     <div className="speech-bubble1" style={{"width":"auto"}}>There are problems regarding the validity of Assumption 1, the EP or other approximations to $P(U)$, as well as the tightness of PAC-Bayes itself.</div>
     <div className="speech-bubble1" style={{"width":"auto"}}>Furthermore, one can dig dipper to try to better understand the origin of the bias, and characterize it. In particular, there is the very important question of <b>why is the bias helpful for <i>real-world</i> tasks?</b></div>
-    <div className="speech-bubble2" style={{"width":"auto", "fontSize":"18pt"}}>
+    <div className="speech-bubble2" style={{"width":"auto", "fontSize":"17pt"}}>
       <p>
-      Starring:
+        <b>
+        Starring:
+        </b>
       </p>
       <p>
-      Zhang et al. Understanding deep learning requires rethinking generalization. In Proceedings of the International Conference on Learning Representations (ICLR), 2017a
+      Zhang et al. Understanding deep learning requires rethinking generalization.  Published in ICLR 2017
       </p>
       <p>
-      ...
+      Wu et al. Towards understanding generalization of deep learning: Perspective of loss landscapes. arXiv preprint arXiv:1706.10239, 2017.
       </p>
       <p>
-      Wu et al.
+      J Lee et al. Deep neural networks as gaussian processes. arXiv preprint arXiv:1711.00165, 2017.
       </p>
       <p>
-      J Lee et al.
+      A Garriga-Alonso et al.  Deep convolutional networks as shallow Gaussian processes.  Published in ICLR 2019
       </p>
       <p>
-      A Garriga-Alonso et al.
+      R Novak et al. Bayesian Deep Convolutional Networks with Many Channels are Gaussian Processes.  Published in ICLR 2019
       </p>
       <p>
-      R Novak et al.
+      AGG Mathews et al. Gaussian Process Behaviour in Wide Deep Neural Networks. Published in ICLR 2018
       </p>
       <p>
-      AGG Mathews et al.
+      Dingle et al. Input–output maps are strongly biased towards simple outputs. Nature communications, 9(1):761, 2018.
       </p>
-      <p>
-      Dingle et al.
-      </p>
+      <p>D Soudry et al. The implicit bias of gradient descent on separable data. arXiv preprint arXiv:1710.10345, 2017</p>
+      <p>Zhang et al. (2017) Musings on deep learning: Properties of sgd. CBMM Memos 04/2017 2017b. </p>
+      <p>Zhang et al. (2018) Energy–entropy competition and the effectiveness of stochastic gradient descent in machine learning. Molecular Physics, pp. 1–10, 2018.</p>
     </div>
   </div>
 </div>
