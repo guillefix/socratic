@@ -30,7 +30,6 @@ class App extends Component {
     <h1 className="poster-title">Deep learning generalizes because the parameter-function map is biased towards simple functions</h1>
     <h2 className="poster-authors">Guillermo Valle-Pérez, Chico Q. Camargo, Ard A. Louis</h2>
     <h3 className="poster-affiliations">Departments of Physics, University of Oxford, UK</h3>
-    // <hr className="fancy-line"/>
   </div>
   <div className="panel" style={{"gridArea": "intro"}}>
     <div className="panel-heading">
@@ -53,8 +52,6 @@ class App extends Component {
 <p>{"$$\\begin{align} \\mathcal{M} : \\Theta &\\to \\mathcal{F}\\\\ \\theta &\\mapsto f_\\mathbf{\\theta} \\end{align}$$"}</p>
 <p>{"where $f_\\mathbf{\\theta}$ is the function implemented by the model with choice of parameter vector $\\mathbf{\\theta}$."}</p>
   </div>
-  </div>
-  <div className="panel" style={{"gridArea": "bias"}}>
   <div className="speech-bubble1">
     <div className="panel-heading">
       <h3 className="bubble-title">Result 1: The parameter-function map is hugely biased</h3>
@@ -76,6 +73,7 @@ class App extends Component {
     </div>
     <div className="speech-bubble2" style={{"width":"auto"}}>Ok, but do we have any way to characterize the bias? What kinds of functions are the networks biased towards?</div>
   </div>
+
   <div className="panel" style={{"gridArea": "biaswhy"}}>
     <div className="speech-bubble1">
       <div className="panel-heading">
@@ -103,11 +101,6 @@ class App extends Component {
     <div className="speech-bubble1">
       The parameter function map satisfies $K(f) \ll K(x)$, and indeed we found that the bound works (red line in Figure)
     </div>
-  </div>
-
-  <hr/>
-
-  <div className="panel" style={{"gridArea": "gener"}}>
     <div className="speech-bubble2" style={{"width":"auto"}}>Is this bias enough to explain the observed generalization?</div>
     <div className="speech-bubble1">
       <div className="panel-heading">
@@ -118,41 +111,36 @@ class App extends Component {
     <div className="speech-bubble2" style={{"width":"auto"}}>Interesting, and how did you determine that?</div>
     <div className="speech-bubble1">
       <p>To explore this question:</p>
-    </div>
-    <div className="speech-bubble1">
       <p>
-        We use the <b>PAC-Bayesian framework</b> to translate probabilistic biases into generalization guarantees
-      </p>
-    </div>
-    <div className="speech-bubble1">
-      <p>
-        We make the assumption that the algorithm optimizing the parameters is unbiased, to isolate the effect of the parameter-function map. More precisely, we assume that the optimization algorithm samples the zero-error region close to uniformly (<i><b>Assumption 1</b></i>).
+      <ul>
+        <li>We use the <b>PAC-Bayesian framework</b> to translate probabilistic biases into generalization guarantees</li>
+        <li>We make the assumption that the algorithm optimizing the parameters is unbiased, to isolate the effect of the parameter-function map. More precisely, we assume that the optimization algorithm samples the zero-error region close to uniformly (<i><b>Assumption 1</b></i>).</li>
+      </ul>
       </p>
     </div>
   </div>
+
   <div className="panel" style={{"gridArea": "methods"}}>
     <div className="speech-bubble2" style={{"width":"auto"}}>Can you provide more details on your method to obtain PAC-Bayes bounds?</div>
     <div className="speech-bubble1" style={{"fontSize":"23pt"}}>
-    <i><b>Corollarly 1</b> (of Langford's version of the <b>PAC-Bayesian theorem</b> [cite]) {"For any distribution $P$ on any function space and"} <u>realizable</u> {"distribution $\\mathcal{D}$ on a space of instances we have, for $0< \\delta \\leq 1 $, that with probability at least $1-\\delta$ over the choice of sample $S$ of $m$ instances"}</i>
+    <i><b>Corollarly 1</b> (of Langford's version of the <b>PAC-Bayesian theorem</b> (Langford et al.)) {"For any distribution $P$ on any function space and"} <u>realizable</u> {"distribution $\\mathcal{D}$ on a space of instances we have, for $0< \\delta \\leq 1 $, that with probability at least $1-\\delta$ over the choice of sample $S$ of $m$ instances"}</i>
     {"$$-\\ln{\\left(1-\\epsilon(Q^*)\\right)} \\leq \\frac{\\ln{\\frac{1}{P(U)}} + \\ln{\\left(\\frac{2m}{\\delta}\\right)}}{m-1}$$"}
     {"where $\\epsilon(Q^*)$ is the expected generalization error under distribution over functions $Q^*(c)=\\frac{P(c)}{\\sum_{c\\in U} P(c)}$, $U$ is the set of functions in $\\mathcal{H}$ consistent with the sample $S$, and where $P(U)=\\sum_{c\\in U} P(c)$"}
     </div>
     <div className="speech-bubble2" style={{"width":"auto"}}>Ah I see. So the bound depends on the data via $P(U)$, which is nothing but the marginal likelihood of the labels on the data, given by the prior $P(f)$. But how do you calculate $P(U)$ for neural networks, isn't that intractable?</div>
     <span className="user">J Lee et al.  </span><div className="speech-bubble2" style={{"width":"80%"}}>Yes. However, $P(f)$ for deep fully connected neural networks approaches a Gaussian process as the width of the layers approaches infinity.</div>
     <span className="user" style={{"width":"7em"}}>A Garriga-Alonso et al., R Novak et al.  </span><div className="speech-bubble2" style={{"width":"78%"}}>also for convolutional networks, as the number of filters goes to infinity!</div>
-    <span className="user">AGG Mathews et al.  </span><div className="speech-bubble2" style={{"width":"70%"}}>and it seems the networks don't need to be that wide for the approximation to be good <small>(we independently checked this too)</small></div>
+    <span className="user">AGG Mathews et al.  </span><div className="speech-bubble2" style={{"width":"70%"}}>and it seems the networks don't need to be that wide for the approximation to be good <small className="speech-bubble1" style={{"padding":"0.2em 0.5em"}}>(we independently checked this too)</small></div>
     <div className="speech-bubble1">
       Thanks everyone! The <b>Gaussian process approximation</b> is what allows us to compute $P(U)$ for realistically-sized NNs. However, the marginal likelihood for a Gaussian process with Bernoulli likelihood <small>(for binary classification, the setting of PAC-Bayes)</small> is still intractable, and so we explored two approximation techniques: Variational, Laplace, expectation-propagation (EP), and found EP to work best for our purposes.
     </div>
-  </div>
-  <div className="panel" style={{"gridArea": "algo"}}>
     <div className="speech-bubble2" style={{"width":"auto"}}>
     <div className="panel-heading">
       <h3 className="bubble-title">What's the effect of the optimization algorithm?</h3>
     </div>
     </div>
     <div className="speech-bubble1" style={{"width":"auto"}}>
-    <p>However, although we have shown that the bias is <i>enough </i> to explain the bulk of the generalization, whether it is the actual origin of the generalization in DNNs depends on the behaviour of the optimization algorithm.</p>
+    <p>Although we have shown that the bias is <i>enough </i> to explain the bulk of the generalization, whether it is the actual origin of the generalization in DNNs depends on the behaviour of the optimization algorithm.</p>
     </div>
     <div className="speech-bubble1" style={{"width":"auto"}}>
     <p> A sufficient (though not necessary) condition for the parameter-function map to be main origin of the generalization is that the optimization algorithm isn't too biased, namely <i><b>Assumption 1</b></i> is approximately valid.</p>
@@ -195,6 +183,7 @@ class App extends Component {
       <p>D Soudry et al. The implicit bias of gradient descent on separable data. arXiv preprint arXiv:1710.10345, 2017</p>
       <p>Zhang et al. (2017) Musings on deep learning: Properties of sgd. CBMM Memos 04/2017 2017b. </p>
       <p>Zhang et al. (2018) Energy–entropy competition and the effectiveness of stochastic gradient descent in machine learning. Molecular Physics, pp. 1–10, 2018.</p>
+      <p>Langford et al. Bounds for averaging classifiers. 2001.</p>
     </div>
   </div>
 </div>
