@@ -26,8 +26,8 @@
   grid-row-gap: 1em;
   grid-template-areas:
     "header header header"
-    "intro bias biaswhy"
-    "gener methods algo";
+    "intro biaswhy methods"
+    "bias gener algo";
   /* grid-template-areas:
     "header header header header header header header"
     "intro intro bias bias bias biaswhy biaswhy"
@@ -36,13 +36,13 @@
     "methods methods methods methods methods methods methods"; */
   padding: 0em 0em 0em 1em ;
   /* grid-auto-flow: column; */
-  background:
+  /* background:
     repeating-linear-gradient(to bottom,
       transparent 0,
       transparent 23.5in,
       rgba(72, 96, 219,0.3) 23.5in,
       rgba(72, 96, 219,0.3) 23.55in
-    );
+    ); */
   /* background: #f7f6f2; */
 }
 

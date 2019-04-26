@@ -40,7 +40,7 @@ class App extends Component {
       <div className="speech-bubble1">Ok, but why does it have an inductive bias?</div>
       <span className="user">VC theory  </span><div className="speech-bubble2">Limited expressivity maybe?</div>
       <br/>
-      <span className="user">Zhang et al.  </span><div className="speech-bubble2" style={{"width":"auto"}}>No, NNs can fit randomly labelled data</div>
+      <span className="user">Zhang et al.  </span><div className="speech-bubble2" style={{"width":"auto"}}>No, neural networks (NNs) can fit randomly labelled data</div>
       <br/>
       <span className="user">D Soudry et al., Zhang et al. (2017), Zhang et al. (2018)  </span><div className="speech-bubble2" style={{"width":"auto"}}>Maybe SGD is what's biasing towards certain solutions</div>
       <div className="speech-bubble1">But many very different optimization algorithms generalize well</div>
@@ -95,13 +95,13 @@ class App extends Component {
     <p>No deeper explanation yet about why the parameter-function map is biased. However, we do have some deeper reason, based on <b>algorithmic information theory</b> for why it is biased towards simple functions, given that it is biased.</p>
     </div>
     <span className="user" style={{"width":"3em"}}>Dingle et al.  </span><div className="speech-bubble2" style={{"width":"87%"}}>
-    <p>The probability $P(x)$ to obtain output $x$ of a map $f$, upon sampling its inputs uniformly at random, which only depends on the Kolmogorov complexity of the output $K(x)$:</p>
+    <p>The probability $P(x)$ to obtain output $x$ of a <i>simple</i> map $f$, upon sampling its inputs uniformly at random, depends only on the Kolmogorov complexity of the output $K(x)$:</p>
     <p>{"$$P(x) \\leq 2^{-K(x)}$$"}</p>
     <p>{"The main condition on the map is that its Kolmogorov complexity is negligible relative to that of the output $K(f) \\ll K(x)$"}</p>
-    <p>Kolmogorov complexity is uncomputable, so we use computable approximations to it, like Lempel-Ziv complexity</p>
+    <p><small>Kolmogorov complexity is uncomputable, so we use computable approximations to it, like Lempel-Ziv complexity</small></p>
     </div>
     <div className="speech-bubble1">
-      The parameter function map satisfies $K(f) \ll K(x)$, and indeed the bound works (red line in Figure)
+      The parameter function map satisfies $K(f) \ll K(x)$, and indeed we found that the bound works (red line in Figure)
     </div>
   </div>
 
@@ -118,11 +118,15 @@ class App extends Component {
     <div className="speech-bubble2" style={{"width":"auto"}}>Interesting, and how did you determine that?</div>
     <div className="speech-bubble1">
       <p>To explore this question:</p>
+    </div>
+    <div className="speech-bubble1">
       <p>
-      <ul>
-        <li>We use the PAC-Bayesian framework to translate probabilistic biases into generalization guarantees</li>
-        <li>We make the assumption that the algorithm optimizing the parameters is unbiased, to isolate the effect of the parameter-function map. More precisely, we assume that the optimization algorithm samples the zero-error region close to uniformly (<i><b>Assumption 1</b></i>).</li>
-      </ul>
+        We use the <b>PAC-Bayesian framework</b> to translate probabilistic biases into generalization guarantees
+      </p>
+    </div>
+    <div className="speech-bubble1">
+      <p>
+        We make the assumption that the algorithm optimizing the parameters is unbiased, to isolate the effect of the parameter-function map. More precisely, we assume that the optimization algorithm samples the zero-error region close to uniformly (<i><b>Assumption 1</b></i>).
       </p>
     </div>
   </div>
