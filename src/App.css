@@ -1,10 +1,8 @@
 .App {
   /* text-align: center; */
   background-color: white;
-  width: 46.8in; /*1188.72*/
-  /* height: 33.1in; */
-  height: 40in; /*1016*/
-  font-size: 25pt;
+  width: 100%;
+  font-size: 12pt;
   /*font-family: 'Average';*/
   /* text-align: justify; */
   /* text-justify: inter-word; */
@@ -12,21 +10,14 @@
 }
 
 .container {
-  height: 100%;
-  width: 100%;
+  /* height: 100%; */
+  width: 30%;
   display: grid;
-  /* grid-template-columns: repeat(7, 1fr) ; */
-  grid-template-columns: repeat(3,32%);
-  grid-template-rows: 12em 1fr;
-  /* justify-items: stretch;
-  align-items: stretch; */
-  justify-content: stretch;
-  align-content: stretch;
-  grid-column-gap: 0.5em;
-  grid-row-gap: 1em;
+  /* grid-column-gap: 0.5em; */
+  /* grid-row-gap: 1em; */
   grid-template-areas:
-    "header header header"
-    "intro biaswhy methods";
+    ". header ."
+    ". chat .";
     /* "bias gener algo"; */
   /* grid-template-areas:
     "header header header header header header header"
@@ -34,7 +25,7 @@
     "pfdef pfdef bias bias bias biaswhy biaswhy"
     "gener gener gener gener algo algo algo"
     "methods methods methods methods methods methods methods"; */
-  padding: 0em 0em 0em 1em ;
+  /* padding: 0em 0.5em 0em 0.5em ; */
   /* grid-auto-flow: column; */
   /* background:
     repeating-linear-gradient(to bottom,
@@ -45,6 +36,51 @@
     ); */
   /* background: #f7f6f2; */
 }
+@media only screen and (max-width: 600px) {
+
+.container {
+  grid-template-columns: 5vw 90vw 5vw;
+  grid-template-rows: 15em 1fr;
+  justify-content: stretch;
+  align-content: stretch;
+}
+.container > * {
+  width: 100vw;
+}
+
+}
+@media only screen and (min-width: 600px) {
+
+.container {
+  grid-template-columns: 5vw 40vw 5vw;
+  grid-template-rows: 15em 1fr;
+  justify-content: center;
+  align-content: stretch;
+  margin: auto;
+}
+
+}
+
+.header {
+  text-align: center;
+}
+
+.poster-title {
+  width: 76vw;
+  margin: auto;
+  font-size: 20pt
+}
+
+.poster-authors {
+  width: 85%;
+  margin: auto;
+  font-size: 13pt;
+}
+
+.poster-affiliations {
+  font-size: 13pt;
+}
+
 
 .clearfix:after
 {
@@ -77,9 +113,8 @@ justify-self: center;
   margin: 0.1em 0.0em;
 }
 
-
 .panel-heading {
-font-size: 38pt;
+font-size: 26pt;
 text-align: center;
 }
 
@@ -92,18 +127,29 @@ text-align: center;
   margin: 0.5em;
   /* display: inline-block; */
   /* float: left; */
-  width: auto;
+  width: 75%;
+}
+.speech-bubble2 {
+   /*TODO: how to make its size adapt to content*/
+  /* width: 70%; */
+  max-width: 72%;
 }
 
 img {
   /* float:none !important; */
   /* display: inline; */
+  width: 95%;
+  max-width: 1000px;
 }
 
 .user {
-  font-size: 20pt;
+  font-size: 0.7em;
+  margin-right: 1em;
+  position: relative;
+  left: -1em;
   display: inline-block;
-  max-width: 8em;
+  max-width: 3em;
+  vertical-align:middle;
 }
 
 .speech-bubble1 {
@@ -133,7 +179,16 @@ img {
 	margin-right: -24px;
 }
 
+.speech-bubble1.result {
+  background: #8ec6e2;
+}
+
+.speech-bubble1.result:after {
+	border-left-color: #8ec6e2;
+}
+
 .speech-bubble2 {
+  vertical-align:middle;
 	position: relative;
 	background: #f1f0f0;
   color: black;
@@ -173,11 +228,11 @@ max-width: 75%;
 }
 
 .bubble-title {
-font-size: 38pt;
+font-size: 17pt;
 text-align: left;
 }
 
 .panel-title {
-font-size: 38pt;
+font-size: 17pt;
 text-align: center;
 }
