@@ -5,6 +5,7 @@ import './App.css';
 
 class App extends Component {
       componentDidMount () {
+        document.title="Deep learning generalizes because the parameter-function map is biased towards simple functions"
         let script = document.createElement("script");
 
         script.src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML";
@@ -17,7 +18,6 @@ class App extends Component {
         script.src = "MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});";
 
         document.body.appendChild(script);
-        document.title="Deep learning generalizes because the parameter-function map is biased towards simple functions"
       }
   handleClick(e) {
     // console.log(e.target.parentNode.parentNode.parentNode.className);
