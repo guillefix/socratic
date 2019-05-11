@@ -31,15 +31,16 @@ class App extends Component {
 <div className="App">
 <div dangerouslySetInnerHTML={{__html:"<script type='text/javascript' async src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js'></script><script type='text/x-mathjax-config'>MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']]}});</script>"}}></div>
 
-<div onClick={this.handleClick.bind(this)} className="container">
-  <div className="header" style={{"gridArea":"header", "textAlign":"center"}}>
-  <a href="http://www.ox.ac.uk/" target="_blank"><img src="oulogo.png" alt="" style={{"width":"12vw","position":"absolute","top":"2.5em","left":"0vw"}}/></a>
-  <a href="http://www.sysbiodtc.ox.ac.uk/" target="_blank"><img src="dtclogo.jpeg" alt="" style={{"width":"12vw","position":"absolute","top":"2.5em","left":"88vw"}}/></a>
+  <div className="header" style={{"textAlign":"center"}}>
+    <a href="http://www.ox.ac.uk/" target="_blank"><img src="oulogo.png" alt="" style={{"width":"12vw","position":"absolute","top":"2.5em","left":"0vw"}}/></a>
+    <a href="http://www.sysbiodtc.ox.ac.uk/" target="_blank"><img src="dtclogo.jpeg" alt="" style={{"width":"12vw","position":"absolute","top":"2.5em","left":"88vw"}}/></a>
     <h1 className="poster-title">Deep learning generalizes because the parameter-function map is biased towards simple functions</h1>
     <h3 className="poster-authors">Guillermo Valle-Pérez, Chico Q. Camargo, Ard A. Louis</h3>
     <h3 className="poster-affiliations">Departments of Physics, University of Oxford, UK</h3>
+    <h4 className=""><mark>Tap on the bubbles to expand explanation. WIP, at me @guillefix on twitter with questions/suggestions</mark></h4>
   </div>
 
+<div onClick={this.handleClick.bind(this)} className="container">
   <div className="panel chat" style={{"gridArea": "chat"}}>
 
   {/*intro*/}
@@ -50,12 +51,12 @@ class App extends Component {
     <br/>
     <B2 user="Zhang et al. (2017a)" exp={<div>If a binary classification model can fit any labelling on a given set of instances this means, by definition, that the VC dimension is greater than the size of the training set, which in turn implies that VC-dimension worst-case bounds are vacuous ($>1$). <B1 exp={<div>In reality, the experiments by Zhang et al. at most show that it can fit almost any labelling, but this is just a detail, the growth function would still be large, or equivalently, the VC dimension can only be guaranteed to be at least [a bit smaller than the size of the training data] <B1 exp={<div><img style={{width:"180px"}} src="https://i.ytimg.com/vi/YYLWwRUMXR0/hqdefault.jpg" alt="dankmeme"/></div>}>Aaackshually</B1></div>}>Ackshually</B1></div>}>No, neural networks (NNs) can fit randomly labelled data</B2>
     <br/>
-    <B2 user="D Soudry et al., Zhang et al. (2017b), Zhang et al. (2018)">Maybe SGD is what's biasing towards certain solutions</B2>
+    <B2 exp={<div><p>Soudry et al. prove particular properties of gradient descent, when using cross-entropy loss, showing that it converges to a maximum-margin distribution on separable data</p><p>Zhang et al. (2017b) prove properties of SGD including that it converges to flat minima</p><p>Zhang et al. (2018) also show that SGD can be biased to wide minima, even at the expense of a higher value of loss</p></div>} user="D Soudry et al., Zhang et al. (2017b), Zhang et al. (2018)">Maybe SGD is what's biasing towards certain solutions</B2>
     <B1 exp="For example: GD, Adam, RMSProp, and all the variants of SGD; even evolutionary algorithms and random search are found to work well in the domains where they have been tried!">But many very different optimization algorithms generalize well</B1>
-    <B2 user="Wu et al." exp={<div>This is just one example of a paper where they find this <small>(the paper is also interesting for many other reasons)</small>. They find that the full-batch gradient descent only generalizes a few percept worse than SGD.</div>}>Yeah!</B2>
+    <B2 user="Wu et al." exp={<div>This is just one example of a paper where they find this <small>(the paper is also interesting for many other reasons)</small>. They find that the full-batch gradient descent only generalizes a few percent worse than SGD.</div>}>Yeah!</B2>
     <B1>Hmm, maybe it's an intrinsic property of the NN, like its parameter-function map?</B1>
     <B2 user="">What's that?</B2>
-    <B1>
+    <B1 exp={<div><p>So intuitively, a function is the input-output map that the network implements.<B1 exp={<div>We enumerate all the inputs <small>(for instance, all images in our training set, or all 7-dimensional Boolean vectors for the first set of experiments)</small>, and the list the corresponding outputs the neural network (with parameters $\theta$) produces. For a fixed ordering of the inputs, this sequence of outputs is what we call a <emph>function</emph>. <small><B1 exp={<div>This is really the mathematical definition of "function", as a collection of input-output pairs, except that we represent this collection using a canonical ordering, determined by the ordering of the inputs. For the case of Boolean inputs, we are looking at Boolean functions, and you can think of our sequence as its truth table.</div>}>Smol achkshually</B1></small></div>}>More precisely</B1></p><p>Because of overparametrization, there is lots of <u>redundancy in the parameters</u>, and so many paramaters give rise to the same function</p></div>}>
       <p>{"Let the space of functions that the model can express be $\\mathcal{F}$. If the model has $p$ real valued parameters, taking values within a set $\\Theta \\subseteq \\mathbb{R}^p$, "}</p>
       <p><big><b>the parameter-function map</b></big>, {"$\\mathcal{M}$, is defined as:"}</p>
       <p>{"$$\\begin{align} \\mathcal{M} : \\Theta &\\to \\mathcal{F}\\\\ \\theta &\\mapsto f_\\mathbf{\\theta} \\end{align}$$"}</p>
@@ -63,7 +64,7 @@ class App extends Component {
     </B1>
 
   {/*bias*/}
-    <B1 className="result">
+    <B1 className="result" exp="Another more precise statement: Upon sampling parameters i.i.d. using a Gaussian or uniform distribution, the probability of obtaining different functions varies by maany orders of magnitude.     Note that we can talk about the probability of a single function, because we consider only binary classification, so the output is 0/1, and we have a finite number of inputs (say $N$), there are then in total a finite number ($2^N$) functions">
       <div className="panel-heading">
         <h3 className="bubble-title">Result 1: The parameter-function map is hugely biased</h3>
       </div>
@@ -72,30 +73,30 @@ class App extends Component {
       The volumes of regions of parameter space producing particular funcions span a huge range of orders of magnitude.
       </blockquote>
     </B1>
-      <B1 exp={<div><p>Fig 1. Probability versus rank of each of the functions (ranked by probability)</p><p>{"Obtained in a sample of $10^{10}$ (blue) or $10^7$ (others) parameters for a fully connected network of shape (7,40,40,1)"}</p></div>}>
+      <B1 exp={<div><p>Fig 1. Probability of obtaining a particular function versus its rank (ranked by probability)</p><p>{"Obtained in a sample of $10^{10}$ (blue) or $10^7$ (others) parameters for a fully connected network of shape (7,40,40,1)"}</p><B1 exp="The different lines (differen colors) represent different distributions over the parameters. The red line, however, represents Zipf'z law, where $P(\text{rank})\propto\frac{1}{\text{rank}}$">What are the different lines?</B1><B1 exp="We rank the functions by their probability. The rank is just the index of the function on that sequence. So rank 1 meanse the most probable functions, rank 10 means the 10th most probable function">What is "Rank"?</B1></div>}>
         {/*<span style={{"fontSize":"0.6em","position":"relative", "top":"178px","left":"1140px","padding":"0.5em","background-color":"white"}}>{"$P(r)=\\frac{1}{\\ln{(N_0)}r}$"}</span>*/}
         <img src="rank_plot_extended.png" alt="logP vs LZ"/>
       </B1>
     <B2>Oh, and how did you find that out?</B2>
     <B1>
-      <p>For a family of fully connected feedforward neural networks with $7$ Boolean inputs and one Boolean output of varying depths and widths, we sampled parameters with several distributions. In Figure, we show the empirical frequencies by which different functions are obtained</p>
+      <p>For a family of fully connected feedforward neural networks with $7$ Boolean inputs and one Boolean output of varying depths and widths, we sampled parameters with several distributions. In Figure 1, we show the empirical frequencies by which different functions are obtained</p>
     </B1>
     <B1>
-      <p>For some larger neural networks with higher-dimensional input spaces, we used a Gaussian process approximation to calculate the probability of different functions. This can be seen in Figures</p>
+      <p exp="We explain the Gaussian process approximation in more detail later.     Also note that in this cases, we need to look at the functions constrained on a limited set of inputs, because we aren't gonna enumerate all possible images. We can say we are talking about labellings rather than functions proper, but the math is the same, and the inutition basically too.">For some larger neural networks with higher-dimensional input spaces, we used a Gaussian process approximation to calculate the probability of different functions. This can be seen in Figures 2a and the inset of Figure 3</p>
     </B1>
     <B2>Ok, but do we have any way to characterize the bias? What kinds of functions are the networks biased towards?</B2>
 
     {/*simpbias*/}
-    <B1 className="result">
+    <B1 className="result" exp={<div>We correlate the probability of obtaining a function with its complexity. We also have shown that if we plot Figure 2b as a histogram, most of the probability weight is near the bound, so that the correlation is actually even better. <B1 exp="We try several. They are all intended to approximate Kolmogorov complexity (which is uncomputable), and try to capture how compressible something is.      Lempel-Ziv complexity for example, basically looks for statistical regularities in a sequence, and compresses it. Our complexity measure is basically the compressed size. We apply it to the truth table of the Boolean functions.  Other measures of complexity we tried are described in the Appendix.">What are the measures of complexity></B1></div>}>
       <div className="panel-heading">
         <h3 className="bubble-title">Result 2: The bias is towards simple functions</h3>
       </div>
       <p>We found that in all cases, the probability of a function inversely correlated with its complexity (using a variety of measures of complexity)</p>
     </B1>
-    <B1 exp="Probability versus Lempel-Ziv complexity. Probabilities are estimated from a sample of $10^8$ parameters. Points with a frequency of $10^{-8}$ are removed for clarity because these suffer from finite-size effects (see Appendix G)">
+    <B1 exp={<div>Probability versus Lempel-Ziv complexity. Probabilities are estimated from a sample of $10^8$ parameters. Points with a frequency of $10^{-8}$ are removed for clarity because these suffer from finite-size effects (see Appendix G) <B1 exp={<div>Lempel-Ziv complexity is a compression-based complexity measure. We express our functions as sequences of outputs, which because our outputs are 0/1, can be seen as bitstrings. We compress these strings using the Lempel-Ziv compression algorithm, which basically looks for statistical regularities in a sequence. "Lempel-Ziv complexity" is essentially defined as length of the compressed string (expressing how compressible the original string was)</div>}>What is LZ complexity?</B1></div>}>
     <img src="cnt_100000000_7_40_40_1_relu_freq_LZ_with_line.png" id="freq_lz_img" alt="rank plot"/>
     </B1>
-    <B1 exp="Probability (using GP approximation) versus critical sample ratio (CSR) of labelings of 1000 random CIFAR10 inputs, produced by $250$ random samples of parameters. The network is a 4 layer CNN">
+    <B1 exp={<div>Probability (using GP approximation) versus critical sample ratio (CSR) of labelings of 1000 random CIFAR10 inputs, produced by $250$ random samples of parameters. The network is a 4 layer CNN. <B1 exp="In short, CSR is a measure of how sensitive the function is to small perturbation of the inputs, it measures what fraction of inputs are close to the decision boundary">What is CSR?</B1></div>}>
     <img src="CSR_logP_test_cnn_4_none_0000.png" id="CSR_logP_img" alt="logP vs CSR"/>
     </B1>
 
@@ -118,7 +119,7 @@ class App extends Component {
     <B2>Is this bias enough to explain the observed generalization?</B2>
 
     {/*gener*/}
-    <B1 className="result">
+    <B1 className="result" exp="What do I mean by the bulk? I mean that the bound is tight, so that we think that most of the generalization is explained by our theory. However, differences of a few percent typically obtained by using different algorithms, or other tricks, are not captured by our theory, but these are typically only small relative differences in generalization, which we argue are lower-order effects. We aim to offer a first-order explanation of generalization">
       <div className="panel-heading">
         <h3 className="bubble-title">Result 3: The bias is enough to explain "the bulk" of the generalization in our experiments</h3>
       </div>

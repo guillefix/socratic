@@ -16,7 +16,7 @@
   /* grid-column-gap: 0.5em; */
   /* grid-row-gap: 1em; */
   grid-template-areas:
-    ". header ."
+    /* ". header ." */
     ". chat .";
     /* "bias gener algo"; */
   /* grid-template-areas:
@@ -40,7 +40,7 @@
 
 .container {
   grid-template-columns: 5vw 90vw 5vw;
-  grid-template-rows: 15em 1fr;
+  grid-template-rows: 1fr;
   justify-content: stretch;
   align-content: stretch;
 }
@@ -53,7 +53,7 @@
 
 .container {
   grid-template-columns: 5vw 40vw 5vw;
-  grid-template-rows: 15em 1fr;
+  grid-template-rows: 1fr;
   justify-content: center;
   align-content: stretch;
   margin: auto;
