@@ -152,7 +152,7 @@ img {
   vertical-align:middle;
 }
 
-.speech-bubble1 {
+.speech-bubble1,.speech-bubble1-special {
 	position: relative;
 	/* background: #09f; */
 	/* background: #188415; */
@@ -177,6 +177,36 @@ img {
 	border-top: 0;
 	margin-top: -12px;
 	margin-right: -24px;
+}
+
+.speech-bubble1-pink:after {
+	content: '';
+	position: absolute;
+	right: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 24px solid transparent;
+	border-left-color: #edc7d1;
+	border-right: 0;
+	border-top: 0;
+	margin-top: -12px;
+	margin-right: -24px;
+}
+
+.speech-bubble1-special:after {
+	content: '';
+	position: absolute;
+	right: 0;
+	top: 70%;
+	width: 0;
+	height: 0;
+	border: 17px solid transparent;
+	border-left-color: #cbe5f2;
+	border-right: 0;
+	border-top: 0;
+	margin-top: -14px;
+	margin-right: -23px;
 }
 
 .speech-bubble1.result {
