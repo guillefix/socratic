@@ -13,7 +13,7 @@ export class B1 extends Component {
   }
   render() {
     const {props, state} = this;
-    console.log("hi", state.exp_visible);
+    // console.log("hi", state.exp_visible);
     // console.log((props.children.filter) ? props.children.filter(n=>n.type==="exp") : "");
     const exps = (props.children.filter) ? props.children.filter(n=>n.type==="exp") : ""
     const content = (props.children.filter) ? props.children.filter(n=>n.type!=="exp") : props.children

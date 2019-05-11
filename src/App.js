@@ -17,6 +17,7 @@ class App extends Component {
         script.src = "MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});";
 
         document.body.appendChild(script);
+        document.title="Deep learning generalizes because the parameter-function map is biased towards simple functions"
       }
   handleClick(e) {
     // console.log(e.target.parentNode.parentNode.parentNode.className);
@@ -39,7 +40,7 @@ class App extends Component {
     <h1 className="poster-title">Deep learning generalizes because the parameter-function map is biased towards simple functions</h1>
     <h3 className="poster-authors">Guillermo Valle-Pérez, Chico Q. Camargo, Ard A. Louis</h3>
     <h3 className="poster-affiliations">Departments of Physics, University of Oxford, UK</h3>
-    <h4 className=""><mark>Tap on the bubbles to expand explanation. WIP, at me @guillefix on twitter with questions/suggestions</mark></h4>
+    <h4 className=""><mark>Tap on the bubbles to expand explanation. At me <a href="https://twitter.com/guillefix" target="_blank">@guillefix</a> on twitter with questions/suggestions</mark></h4>
   </div>
 
 <div onClick={this.handleClick.bind(this)} className="container">
@@ -48,20 +49,20 @@ class App extends Component {
   {/*intro*/}
     <B1>
       <div>Why does deep learning generalize?</div>
-      <exp>Generalization is the ability of a supervised learning algorithm to predict correctly on data outside the training set (typically assumed to come from the same distribution). See <a href="http://guillefix.me/cosmos/static/Introduction%2520to%2520supervised%2520learning%2520theory.html">here</a> for an intro to supervised learning theory, including a formal definition of generalization in this context.</exp>
+      <exp>Generalization is the ability of a supervised learning algorithm to predict correctly on data outside the training set (typically assumed to come from the same distribution). See <a target="_blank" href="http://guillefix.me/cosmos/static/Introduction%2520to%2520supervised%2520learning%2520theory.html">here</a> for an intro to supervised learning theory, including a formal definition of generalization in this context.</exp>
     </B1>
     <B2 user="Supervised learning theory">
       <div>Because it has an inductive bias</div>
-      <exp><p>All the theorems that guarantee generalization (PAC, VC/growth function, Rademacher, PAC-Bayes, compression, stability) try to quantify an inductive bias. This is obvious really, think of a completely unbiased algorithm (no restrictions on hypotheses, or bias within them), it just guesses randomly outside the training data.</p><p>See <a href="http://guillefix.me/cosmos/static/Introduction%2520to%2520supervised%2520learning%2520theory.html">here</a> for a more in depth look at supervised learning theory.</p></exp>
+      <exp><p>All the theorems that guarantee generalization (PAC, VC/growth function, Rademacher, PAC-Bayes, compression, stability) try to quantify an inductive bias. This is obvious really, think of a completely unbiased algorithm (no restrictions on hypotheses, or bias within them), it just guesses randomly outside the training data.</p><p>See <a target="_blank" href="http://guillefix.me/cosmos/static/Introduction%2520to%2520supervised%2520learning%2520theory.html">here</a> for a more in depth look at supervised learning theory.</p></exp>
     </B2>
     <B1>Ok, but why does it have an inductive bias?</B1>
     <B2 user="VC theory" >
       <div>Limited expressivity maybe?</div>
       <exp>
-        <p>In binary classification, <a href="http://guillefix.me/cosmos/static/VC%2520dimension.html">Vapnik-Chervonenkis</a> theory determines when a hypothesis class ${"\\mathcal{H}"}$ has the <emph>uniform convergence property</emph>, which means that with high probability over the sampling of the training set <u>every</u> function in ${"\\mathcal{H}"}$ has a training error which is close to its generalization error, for sufficiently large training sets. It also quantifies how large the training sets need to be, giving generalization error bounds which are <u>worst-case over all empirical-risk-minimizing algorithms</u></p>
+        <p>In binary classification, <a target="_blank" href="http://guillefix.me/cosmos/static/VC%2520dimension.html">Vapnik-Chervonenkis</a> theory determines when a hypothesis class ${"\\mathcal{H}"}$ has the <emph>uniform convergence property</emph>, which means that with high probability over the sampling of the training set <u>every</u> function in ${"\\mathcal{H}"}$ has a training error which is close to its generalization error, for sufficiently large training sets. It also quantifies how large the training sets need to be, giving generalization error bounds which are <u>worst-case over all empirical-risk-minimizing algorithms</u></p>
         <B1 >
           <div>More references</div>
-          <exp>If you want to understand VC dimension theory, as well as most of classic learning theory, and other more applied parts of learning theory, I recommend the excellent book <a href="http://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/">Understanding Machine learning by Shai and Shai</a>, which has a <a href="https://www.youtube.com/watch?v=b5NlRg8SjZg&list=PLPW2keNyw-usgvmR7FTQ3ZRjfLs5jT4BO">recorded video lecture series</a></exp>
+          <exp>If you want to understand VC dimension theory, as well as most of classic learning theory, and other more applied parts of learning theory, I recommend the excellent book <a target="_blank" href="http://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/">Understanding Machine learning by Shai and Shai</a>, which has a <a target="_blank" href="https://www.youtube.com/watch?v=b5NlRg8SjZg&list=PLPW2keNyw-usgvmR7FTQ3ZRjfLs5jT4BO">recorded video lecture series</a></exp>
         </B1>
       </exp>
     </B2>
@@ -175,9 +176,9 @@ class App extends Component {
         <B1 >
           <div>What are the measures of complexity</div>
           <exp>
-            <p>We try several. Most of them are intended to approximate <a href="http://guillefix.me/cosmos/static/Kolmogorov%2520complexity.html">Kolmogorov complexity</a> (which is uncomputable), and try to capture how compressible something is (i.e. "can you describe it in few words/lines of code?").</p>
-            <p><a href="http://guillefix.me/cosmos/static/Lempel-Ziv%2520complexity.html">Lempel-Ziv complexity</a> for example tries to compress a sequence of characters (a sequence of outputs, when we apply it to functions). It basically looks for statistical regularities in the sequence, and finds a shorter description seizing these. Our complexity measure is basically the compressed size. See our implementation <a href="https://github.com/guillefix/simpbias-tools">here</a>, where I also put most of the other complexity measures we tried</p>
-            <p>Other measures of complexity we tried are described in the Appendix F1 in <a href="https://arxiv.org/abs/1805.08522">the paper</a>, and include measures on the size of the shortest Boolean expression encoding the Boolean function, and measures on how sensitive the function is to small changes in its input.</p>
+            <p>We try several. Most of them are intended to approximate <a target="_blank" href="http://guillefix.me/cosmos/static/Kolmogorov%2520complexity.html">Kolmogorov complexity</a> (which is uncomputable), and try to capture how compressible something is (i.e. "can you describe it in few words/lines of code?").</p>
+            <p><a target="_blank" href="http://guillefix.me/cosmos/static/Lempel-Ziv%2520complexity.html">Lempel-Ziv complexity</a> for example tries to compress a sequence of characters (a sequence of outputs, when we apply it to functions). It basically looks for statistical regularities in the sequence, and finds a shorter description seizing these. Our complexity measure is basically the compressed size. See our implementation <a target="_blank" href="https://github.com/guillefix/simpbias-tools">here</a>, where I also put most of the other complexity measures we tried</p>
+            <p>Other measures of complexity we tried are described in the Appendix F1 in <a target="_blank" href="https://arxiv.org/abs/1805.08522">the paper</a>, and include measures on the size of the shortest Boolean expression encoding the Boolean function, and measures on how sensitive the function is to small changes in its input.</p>
           </exp>
         </B1>
       </exp>
@@ -201,7 +202,7 @@ class App extends Component {
         <B1 >
           <div>What is CSR?</div>
           <exp>
-            In short, CSR is a measure of how sensitive the function is to small perturbation of the inputs, it measures what fraction of inputs are close to the decision boundary. It was proposed in <a href="https://arxiv.org/abs/1706.05394">this paper by Krueger et al.</a>
+            In short, CSR is a measure of how sensitive the function is to small perturbation of the inputs, it measures what fraction of inputs are close to the decision boundary. It was proposed in <a target="_blank" href="https://arxiv.org/abs/1706.05394">this paper by Krueger et al.</a>
           </exp>
         </B1>
         <B1 >
@@ -220,7 +221,7 @@ class App extends Component {
       </div>
     </B2>
     <B1 >
-      <p>No deeper explanation yet about why the parameter-function map is biased. However, we do have some deeper reason, based on <a href="http://guillefix.me/cosmos/static/Algorithmic%2520information%2520theory.html"><b>algorithmic information theory</b></a> for why it is biased towards simple functions, given that it is biased.</p>
+      <p>No deeper explanation yet about why the parameter-function map is biased. However, we do have some deeper reason, based on <a target="_blank" href="http://guillefix.me/cosmos/static/Algorithmic%2520information%2520theory.html"><b>algorithmic information theory</b></a> for why it is biased towards simple functions, given that it is biased.</p>
       <exp>You can see in <a href="#figure1">Figure 1</a> that the distribution seems to follow Zipf's law. We think that this may indicate that there may be a way of explaining the fact that they are biased, because there are so many ways of explaining Zipf's law in many systems.</exp>
     </B1>
     <B2  user={<a href="#dingle2018">Dingle et al.</a>}>
@@ -235,7 +236,7 @@ class App extends Component {
           <p>Therefore, it is typically not hard to upper bound the Kolmogorov complexity of something (let's assume the thing is a string, and call it $x$ for short). One just need to find <i>a</i> description of $x$, and then the shortest description has to be equal or shorter than this one!</p>
           <p><small>(finding a lower bound of Kolmogorov complexity is much harder, and in some cases provably impossible..)</small></p>
           <p>So let's say the probaility distribution $P$ itself (or equivalently the input-output map $f$ defining it) has a very short description, taking $C$ bits</p>
-          <p>We can describe any $x$ in the support of $P$ by first describing $P$, with $C$ bits, and then giving a code (that can be constructed from $P$) that uniquely identifies $x$. An easy-to-describe coding escheme that is constructed from a distribution $P$ is the <a href="https://www.wikiwand.com/en/Shannon%E2%80%93Fano%E2%80%93Elias_coding">Shannon-Fano-Elias coding</a>. The important thing is that this coding asigns to each $x$ a code/description of size {"$\\log{\\frac{1}{P(x)}}$"} bits.</p>
+          <p>We can describe any $x$ in the support of $P$ by first describing $P$, with $C$ bits, and then giving a code (that can be constructed from $P$) that uniquely identifies $x$. An easy-to-describe coding escheme that is constructed from a distribution $P$ is the <a target="_blank" href="https://www.wikiwand.com/en/Shannon%E2%80%93Fano%E2%80%93Elias_coding">Shannon-Fano-Elias coding</a>. The important thing is that this coding asigns to each $x$ a code/description of size {"$\\log{\\frac{1}{P(x)}}$"} bits.</p>
           <p>So we described $x$ using {"$C+\\log{\\frac{1}{P(x)}}$"} bits. The constant $C$ doesn't grow with $x$, and so we call it "$O(1)$"</p>
           <p>By the discussion above, this means we can upper bound the Kolmorov complexity by the size of this description {"$K(x)<-\\log{P(x)}+O(1)$"}, which rearranging gives the desired result <small>(note that we still write $+O(1)$ even if it changes sign, as its just a symbol meaning "a constant", not a specific value)</small></p>
         </div>
@@ -313,7 +314,7 @@ class App extends Component {
       {"where $\\epsilon(Q^*)$ is the expected generalization error under distribution over functions $Q^*(c)=\\frac{P(c)}{\\sum_{c\\in U} P(c)}$, $U$ is the set of functions in $\\mathcal{H}$ consistent with the sample $S$, and where $P(U)=\\sum_{c\\in U} P(c)$"}
       <exp>
       <p>
-        It's quite tricky to give an intuitive explanation of PAC-Bayes (though I wanna try in a future blog post or something, or in my <a href="http://guillefix.me/cosmos/static/Introduction%2520to%2520supervised%2520learning%2520theory.html">Intro to supervised learning theory</a>).
+        It's quite tricky to give an intuitive explanation of PAC-Bayes (though I wanna try in a future blog post or something, or in my <a target="_blank" href="http://guillefix.me/cosmos/static/Introduction%2520to%2520supervised%2520learning%2520theory.html">Intro to supervised learning theory</a>).
       </p>
       <p>Here is a short attempt. You know people talk about VC dimension/capacity/expressivity? The idea of those measures is that if you have many different functions that your algorithm can output, the it may overfit, and not generalize. Conversely, if it has few functions it's considering, and it is still able to fit the training data with one, then one can be confident, that it will generalize well outside the training data.</p>
       <p>You can think of a probabilistic prior over functions $P(f)$ as a "smoothed" version of limiting the set of functions (<i>hypothesis class</i> in jargon), where one instead makes the algorithm prefer some functions much much more than others, but it doesn't <i>completely</i> rule the others out. PAC-Bayes gives guarantees on the generalization error for algorithms with such prior.</p>
@@ -334,7 +335,7 @@ class App extends Component {
       </B1>
       </exp>
     </B1>
-    <B2>Ah I see. So the bound depends on the data via $P(U)$, which is nothing but the <a href="https://www.wikiwand.com/en/Marginal_likelihood">marginal likelihood</a> of the labels on the data, given by the prior $P(f)$. But how do you calculate $P(U)$ for neural networks, isn't that intractable?</B2>
+    <B2>Ah I see. So the bound depends on the data via $P(U)$, which is nothing but the <a target="_blank" href="https://www.wikiwand.com/en/Marginal_likelihood">marginal likelihood</a> of the labels on the data, given by the prior $P(f)$. But how do you calculate $P(U)$ for neural networks, isn't that intractable?</B2>
     <br/>
     <B2 user={<a href="#jlee2017">J Lee et al.</a>}>
     <div>Yes. However, $P(f)$ for deep fully connected neural networks approaches a Gaussian process as the width of the layers approaches infinity.</div>
@@ -367,7 +368,7 @@ class App extends Component {
     <B2 user={<a href="#aggmathews2018">AGG Mathews et al.</a>}>and it seems the networks don't need to be that wide for the approximation to be good <small className="speech-bubble1-special" style={{fontSize:"0.8em", "padding":"0.2em 0.5em"}}>(we independently checked this too)</small></B2>
     <B1>
       <div>Thanks everyone! The <b>Gaussian process approximation</b> is what allows us to compute $P(U)$ for realistically-sized NNs. However, the marginal likelihood for a Gaussian process with Bernoulli likelihood <small>(for binary classification, the setting of PAC-Bayes)</small> is still intractable, and so we explored some approximation techniques: Variational, Laplace, expectation-propagation (EP), and found EP to work best for our purposes.</div>
-      <exp>See details in our <a href="https://arxiv.org/pdf/1805.08522.pdf#page=7">paper</a></exp>
+      <exp>See details in our <a target="_blank" href="https://arxiv.org/pdf/1805.08522.pdf#page=7">paper</a></exp>
     </B1>
 
     {/*algo*/}
@@ -409,8 +410,8 @@ class App extends Component {
     <div>
       We work under the standard assumption of supervised learning theory, that the test set is sampled i.i.d. from the same distribution as the training set. This impies a couple of important <b>limitations of our work:</b>
         <ul>
-          <li>Our bound is not applicable in many real-world situations where this assumption doesn't hold. See <a href="https://arxiv.org/abs/1902.10811">Do ImageNet Classifiers Generalize to ImageNet? </a> for an example work showing that often this assumption is not totally valid (in other cases, it's <i>really</i> not valid)</li>
-          <li>In the situations where it applies, we think our bound offers important insight into the origin of the generalization performance of neural networks. However, if the objective is purely to predict generalization performance, other approaches like using a test set work better than our current bounds (see <a href="https://icml.cc/Conferences/2005/proceedings/papers/052_Comparison_KaeaeriaeinenLangford.pdf">A Comparison of Tight Generalization Error Bounds</a> from 2005 for a nice overview.)</li>
+          <li>Our bound is not applicable in many real-world situations where this assumption doesn't hold. See <a target="_blank" href="https://arxiv.org/abs/1902.10811">Do ImageNet Classifiers Generalize to ImageNet? </a> for an example work showing that often this assumption is not totally valid (in other cases, it's <i>really</i> not valid)</li>
+          <li>In the situations where it applies, we think our bound offers important insight into the origin of the generalization performance of neural networks. However, if the objective is purely to predict generalization performance, other approaches like using a test set work better than our current bounds (see <a target="_blank" href="https://icml.cc/Conferences/2005/proceedings/papers/052_Comparison_KaeaeriaeinenLangford.pdf">A Comparison of Tight Generalization Error Bounds</a> from 2005 for a nice overview.)</li>
         </ul>
       </div>
     </B1>
