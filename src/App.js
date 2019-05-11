@@ -142,7 +142,7 @@ class App extends Component {
           <p>{"Obtained in a sample of $10^{10}$ (blue) or $10^7$ (others) parameters for a fully connected network of shape (7,40,40,1)"}</p>
           <B1 >
             <div>What are the different lines?</div>
-            <exp>{"The different lines (differen colors) represent different distributions over the parameters. The red line, however, represents Zipf'z law, where $P(\text{rank})\propto\frac{1}{\text{rank}}$"}</exp>
+            <exp>{"The different lines (differen colors) represent different distributions over the parameters. The red line, however, represents Zipf'z law, where $P(\\text{rank})\\propto\\frac{1}{\\text{rank}}$"}</exp>
           </B1>
           <B1 >
             <div>What is "Rank"?</div>
@@ -362,7 +362,7 @@ class App extends Component {
     </B2>
     <B2 user={<span><a href="#agarrigaalonso2019">A Garriga-Alonso et al.</a>, <a href="#rnovak2019">R Novak et al.</a></span>}>also for convolutional networks, as the number of filters goes to infinity!</B2>
     <B2 user={<a href="#gyang2019">G Yang</a>}>
-      <div>actually most modern neural net architectures do to, in certain scaling limits!</div>
+      <div>actually most modern neural net architectures do too, in certain scaling limits!</div>
       <exp>More precisely, They show the convergence of random neural networks to Gaussian processes for architectures such as recurrent neural networks, convolutional neural networks, residual networks, attention, and any combination thereof, with or without batch normalization. They also show a bunch of other results building on lots of cool work studying the mean-field limit of neural networks.</exp>
       </B2>
     <B2 user={<a href="#aggmathews2018">AGG Mathews et al.</a>}>and it seems the networks don't need to be that wide for the approximation to be good <small className="speech-bubble1-special" style={{fontSize:"0.8em", "padding":"0.2em 0.5em"}}>(we independently checked this too)</small></B2>
