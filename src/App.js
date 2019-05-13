@@ -59,7 +59,29 @@ class App extends Component {
     <B2 user="VC theory" >
       <div>Limited expressivity maybe?</div>
       <exp>
-        <p>In binary classification, <a target="_blank" href="http://guillefix.me/cosmos/static/VC%2520dimension.html">Vapnik-Chervonenkis</a> theory determines when a hypothesis class ${"\\mathcal{H}"}$ has the <emph>uniform convergence property</emph>, which means that with high probability over the sampling of the training set <u>every</u> function in ${"\\mathcal{H}"}$ has a training error which is close to its generalization error, for sufficiently large training sets. It also quantifies how large the training sets need to be, giving generalization error bounds which are <u>worst-case over all empirical-risk-minimizing algorithms</u></p>
+        <p>Expressivity refers to "how many different functions can your model express", or "how large is the set of functions that your learning algorithm may output" (this set is called the <i>hypothesis class</i>, and typically written {"$\\mathcal{H}$"})</p>
+        <p>The simplest measure of this is literally that, "how many functions" are there in {"$\\mathcal{H}$"}, i.e. its cardinality. However, this doesn't take into account whether some functions may be very similar to each other. The <a target="_blank" href="http://guillefix.me/cosmos/static/VC%2520dimension.html">Vapnik-Chervonenkis (VC) dimension</a>  is a more sophisticated measure of expressivity that takes this into account, giving a measure of "effective size".</p>
+        <B1>
+        <div>What does VC try to measure?</div>
+        <exp>
+          <p>To understand VC dimension better, let's explain what it tries to capture. In binary classification, the VC dimension determines whether a hypothesis class ${"\\mathcal{H}"}$ has the <emph>uniform convergence property</emph>, which means that with high probability over the sampling of the training set <u>every</u> function in ${"\\mathcal{H}"}$ has a training error which is close to its generalization error. In particular, the VC dimension determines how large the training set needs to be for this property to hold. This in turn allows one to obtain generalization error upper bounds which are <u>worst-case over all empirical-risk-minimizing algorithms and data distributions</u>.</p>
+          <p>If the VC dimension is infinite, then the uniform convergence property doesn't hold, no matter how large the training set. Such a hypothesis class is said to <i>not be PAC-learnable</i>. However, remember this learnability property is worst-case over algorithms and distributions. So your particular algorithm/problem may still allow for generalization even if using this hypothesis class.</p>
+          <p>To understand these kinds of generalization bounds better, see the explanation at <a href="#pac-bayes-theorem">PAC-Bayes theorem</a> below.</p>
+          <B1>
+          <div>Hecc, but what is the actual definition of VC dimension?</div>
+          <exp>
+          <p>
+          Fine, the VC dimension is the size of the largest set of input points that your hypothesis class can <i>shatter</i>. A class "shattering a set" means that your hypothesis class has functions in it that can perfectly fit any binary labelling put on that set.
+          </p>
+          <p>
+            <a href="https://www.youtube.com/watch?v=0kWZoyNRxTY&index=10&list=PLA89DCFA6ADACE599#t=8m54s">God explains what shattering is</a>,
+            <a href="https://www.youtube.com/watch?v=0kWZoyNRxTY&index=10&list=PLA89DCFA6ADACE599#t=13m50s">and then defines VC dimension</a>
+          </p>
+          </exp>
+
+          </B1>
+        </exp>
+        </B1>
         <B1 >
           <div>More references</div>
           <exp>If you want to understand VC dimension theory, as well as most of classic learning theory, and other more applied parts of learning theory, I recommend the excellent book <a target="_blank" href="http://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/">Understanding Machine learning by Shai and Shai</a>, which has a <a target="_blank" href="https://www.youtube.com/watch?v=b5NlRg8SjZg&list=PLPW2keNyw-usgvmR7FTQ3ZRjfLs5jT4BO">recorded video lecture series</a></exp>
@@ -156,7 +178,7 @@ class App extends Component {
       <exp>
       <p>We sample the parameters of the neural network $N$ times. For each sample, we evaluate the network on each of the $2^7$ Boolean input vectors, to obtain the sequence of outputs, which we call "function". The "empirical frequency" is just how many times a particular function appeared after sampling $N$ times.</p>
       <p>In Figure 1. these counts are dividied by the total number of samples $N$, so that they approach the actual probability of obtaining that function, on the limit of large samples.</p>
-      <p>For all the input distributions, $N=10^8$, except for the blue one, for which we made a bigger sample $N=10^{10}$, which is why it goes further down.</p>
+      <p>For all the input distributions, $N=10^8$, except for the blue one, for which we made a bigger sample {"$N=10^{10}$"}, which is why it goes further down.</p>
       </exp>
     </B1>
     <B1 >
@@ -186,7 +208,7 @@ class App extends Component {
     <B1 >
       <img src="cnt_100000000_7_40_40_1_relu_freq_LZ_with_line.png" id="freq_lz_img" alt="rank plot"/>
       <exp>
-        Probability versus Lempel-Ziv complexity. Probabilities are estimated from a sample of $10^8$ parameters, the same way as in <a href="#figure1">Figure 1</a>. Points with a frequency of $10^{-8}$ are removed for clarity because these suffer from finite-size effects (see Appendix G)
+        Probability versus Lempel-Ziv complexity. Probabilities are estimated from a sample of $10^8$ parameters, the same way as in <a href="#figure1">Figure 1</a>. Points with a frequency of {"$10^{-8}$"} are removed for clarity because these suffer from finite-size effects (see Appendix G)
         <B1 >
           <div>What is LZ complexity?</div>
           <exp>
@@ -308,7 +330,7 @@ class App extends Component {
     <B2>Can you provide more details on your method to obtain PAC-Bayes bounds?</B2>
 
   {/*methods*/}
-    <B1 style={{"fontSize":"0.9em"}}>
+    <B1 id="pac-bayes-theorem" style={{"fontSize":"0.9em"}}>
       <i><b>Corollary 1</b> (of Langford and Seeger's version of the <b>PAC-Bayesian theorem</b> (Langford et al.)) {"For any distribution $P$ on any function space and"} <u>realizable</u> {"distribution $\\mathcal{D}$ on a space of instances we have, for $0< \\delta \\leq 1 $, that with probability at least $1-\\delta$ over the choice of sample $S$ of $m$ instances"}</i>
       {"$$-\\ln{\\left(1-\\epsilon(Q^*)\\right)} \\leq \\frac{\\ln{\\frac{1}{P(U)}} + \\ln{\\left(\\frac{2m}{\\delta}\\right)}}{m-1}$$"}
       {"where $\\epsilon(Q^*)$ is the expected generalization error under distribution over functions $Q^*(c)=\\frac{P(c)}{\\sum_{c\\in U} P(c)}$, $U$ is the set of functions in $\\mathcal{H}$ consistent with the sample $S$, and where $P(U)=\\sum_{c\\in U} P(c)$"}
@@ -316,7 +338,7 @@ class App extends Component {
       <p>
         It's quite tricky to give an intuitive explanation of PAC-Bayes (though I wanna try in a future blog post or something, or in my <a target="_blank" href="http://guillefix.me/cosmos/static/Introduction%2520to%2520supervised%2520learning%2520theory.html">Intro to supervised learning theory</a>).
       </p>
-      <p>Here is a short attempt. You know people talk about VC dimension/capacity/expressivity? The idea of those measures is that if you have many different functions that your algorithm can output, the it may overfit, and not generalize. Conversely, if it has few functions it's considering, and it is still able to fit the training data with one, then one can be confident, that it will generalize well outside the training data.</p>
+      <p>Here is a short attempt. You know people talk about VC dimension/capacity/expressivity? The idea of those measures is that if you have many different functions that your algorithm can output, then it may overfit, and not generalize. Conversely, if it has few functions it's considering, and it is still able to fit the training data with one, then one can be confident, that it will generalize well outside the training data.</p>
       <p>You can think of a probabilistic prior over functions $P(f)$ as a "smoothed" version of limiting the set of functions (<i>hypothesis class</i> in jargon), where one instead makes the algorithm prefer some functions much much more than others, but it doesn't <i>completely</i> rule the others out. PAC-Bayes gives guarantees on the generalization error for algorithms with such prior.</p>
       <B1>
       <span>But why can we be confident of generalization, when the hypothesis class is small?</span>
