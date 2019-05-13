@@ -74,8 +74,8 @@ class App extends Component {
           Fine, the VC dimension is the size of the largest set of input points that your hypothesis class can <i>shatter</i>. A class "shattering a set" means that your hypothesis class has functions in it that can perfectly fit any binary labelling put on that set.
           </p>
           <p>
-            <a href="https://www.youtube.com/watch?v=0kWZoyNRxTY&index=10&list=PLA89DCFA6ADACE599#t=8m54s">God explains what shattering is</a>,
-            <a href="https://www.youtube.com/watch?v=0kWZoyNRxTY&index=10&list=PLA89DCFA6ADACE599#t=13m50s">and then defines VC dimension</a>
+            <a target="_blank" href="https://www.youtube.com/watch?v=0kWZoyNRxTY&index=10&list=PLA89DCFA6ADACE599#t=8m54s">God explains what shattering is</a>,
+            <a target="_blank" href="https://www.youtube.com/watch?v=0kWZoyNRxTY&index=10&list=PLA89DCFA6ADACE599#t=13m50s">and then defines VC dimension</a>
           </p>
           </exp>
 
